@@ -167,14 +167,40 @@ body {
 	}
 }
 .g-item2-0 {
-	padding-top: 50px;
-	padding-bottom: 45px;
+	padding: 50px 0 50px;
 	background-color: #FAFAFA;
 	.g-section {
 		text-align: center;
 	}
-	.item-des-wrp {
-		margin-top: 35px;
+	.item-title {
+		margin-bottom: 70px;
+	}
+	.main {
+		overflow: hidden;
+		.group {
+			float: left;
+			width: 290px;
+			margin-right: 60px;
+			p {
+				margin: 30px 0;
+				color: #000000;
+				font-size: 24px;
+				text-align: center
+			}
+			ul {
+    			margin: 0 auto;
+				overflow: hidden;
+    
+			}
+			li {
+				width: 100%;
+				margin-bottom: 8px;
+				color: #000000;
+				font-size: 14px;
+				text-align: center;
+			}
+			
+		}
 	}
 }
 .g-item2 {
@@ -347,7 +373,7 @@ body {
 			.total {
 				float: left;
 			}
-			.btn {
+			.buy {
 				float: right;
 				margin-top: 14px;
 				width: 220px;
@@ -361,6 +387,22 @@ body {
 					color: #000000;
 					font-size: 20px;
 				}
+				&:hover {
+					background: url(../img/item3-buy-hover.png) no-repeat center;
+					background-size: 220px 40px;
+				}
+			}
+			.sellout {
+				display: none;
+				float: right;
+				margin-top: 14px;
+				width: 220px;
+				height: 40px;
+				color: #000000;
+				font-weight: bold;
+				font-size: 16px;
+				background: url(../img/item3-btn-sellout.png) no-repeat center;
+				background-size: 220px 40px;
 			}
 			.status {
 				color: #FCDD00;
