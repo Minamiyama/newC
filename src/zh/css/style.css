@@ -168,13 +168,32 @@ body {
   background-size: 413px 280px; }
 
 .g-item2-0 {
-  padding-top: 50px;
-  padding-bottom: 45px;
+  padding: 50px 0 50px;
   background-color: #FAFAFA; }
   .g-item2-0 .g-section {
     text-align: center; }
-  .g-item2-0 .item-des-wrp {
-    margin-top: 35px; }
+  .g-item2-0 .item-title {
+    margin-bottom: 70px; }
+  .g-item2-0 .main {
+    overflow: hidden; }
+    .g-item2-0 .main .group {
+      float: left;
+      width: 290px;
+      margin-right: 60px; }
+      .g-item2-0 .main .group p {
+        margin: 30px 0;
+        color: #000000;
+        font-size: 24px;
+        text-align: center; }
+      .g-item2-0 .main .group ul {
+        margin: 0 auto;
+        overflow: hidden; }
+      .g-item2-0 .main .group li {
+        width: 100%;
+        margin-bottom: 8px;
+        color: #000000;
+        font-size: 14px;
+        text-align: center; }
 
 .g-item2 {
   padding-top: 40px; }
@@ -299,7 +318,7 @@ body {
         color: #FCDD00; }
       .g-item3 .right .top .total {
         float: left; }
-      .g-item3 .right .top .btn {
+      .g-item3 .right .top .buy {
         float: right;
         margin-top: 14px;
         width: 220px;
@@ -309,9 +328,23 @@ body {
         font-size: 16px;
         background: url(../img/item3-buy.png) no-repeat center;
         background-size: 220px 40px; }
-        .g-item3 .right .top .btn .price {
+        .g-item3 .right .top .buy .price {
           color: #000000;
           font-size: 20px; }
+        .g-item3 .right .top .buy:hover {
+          background: url(../img/item3-buy-hover.png) no-repeat center;
+          background-size: 220px 40px; }
+      .g-item3 .right .top .sellout {
+        display: none;
+        float: right;
+        margin-top: 14px;
+        width: 220px;
+        height: 40px;
+        color: #000000;
+        font-weight: bold;
+        font-size: 16px;
+        background: url(../img/item3-btn-sellout.png) no-repeat center;
+        background-size: 220px 40px; }
       .g-item3 .right .top .status {
         color: #FCDD00;
         font-size: 16px; }

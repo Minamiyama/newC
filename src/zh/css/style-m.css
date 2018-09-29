@@ -96,13 +96,36 @@ body {
     background-size: 5.49rem 3.87rem; }
 
 .g-item2-0 {
-  padding-top: .6rem;
-  padding-bottom: .7rem;
+  padding: .6rem 0 .5rem;
   background-color: #FAFAFA; }
   .g-item2-0 .g-section {
     text-align: center; }
-  .g-item2-0 .item-des-wrp {
-    margin-top: .5rem; }
+  .g-item2-0 .item-title-wrp {
+    margin-bottom: .2rem; }
+  .g-item2-0 .main {
+    overflow: hidden; }
+    .g-item2-0 .main .group {
+      margin-top: .4rem;
+      padding: 0 .5rem;
+      overflow: hidden; }
+      .g-item2-0 .main .group .left {
+        float: left; }
+      .g-item2-0 .main .group .right {
+        float: right; }
+      .g-item2-0 .main .group img {
+        width: 4.1rem; }
+      .g-item2-0 .main .group p {
+        margin: .3rem 0 .38rem;
+        color: #000000;
+        font-size: 20px;
+        text-align: center; }
+      .g-item2-0 .main .group ul {
+        margin: 0 auto;
+        overflow: hidden; }
+      .g-item2-0 .main .group li {
+        margin-bottom: .2rem;
+        color: #000000;
+        font-size: 14px; }
 
 .g-item2 {
   padding-top: .6rem; }
@@ -232,6 +255,9 @@ body {
     margin: 0 auto .6rem;
     background: url(../img/m-item3-buy.png) no-repeat center;
     background-size: 6.5rem .8rem; }
+    .g-item3 .right .btn:active {
+      background: url(../img/m-item3-buy-hover.png) no-repeat center;
+      background-size: 6.5rem .8rem; }
   .g-item3 .right .status {
     color: #FCDD00;
     font-size: 14px; }
