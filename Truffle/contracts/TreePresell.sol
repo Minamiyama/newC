@@ -9,6 +9,8 @@ contract TreePresell {
 
     address[][TREE_TYPE] private treeOwners;
 
+    event TreeBeBought(uint[TREE_TYPE] trees);
+
     constructor() public payable {
         owner = msg.sender;
     }
@@ -21,7 +23,11 @@ contract TreePresell {
         treeOwners[treeType].push(msg.sender);
         owner.transfer(msg.value);
 
-        return getSellInfo();
+        (uint[TREE_TYPE] memory trees, uint[TREE_TYPE] memory mine) = getSellInfo();
+
+        emit TreeBeBought(trees);
+
+        return (trees, mine);
     }
 
     function getSellInfo() public view returns (uint[TREE_TYPE], uint[TREE_TYPE]) {
