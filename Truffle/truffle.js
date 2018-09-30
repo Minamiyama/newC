@@ -39,8 +39,8 @@ module.exports = {
                 return provider;
             },
             network_id: 1,
-            gasPrice: 8000000000,
-            gas: 419530
+            gasPrice: 10000000000,
+            gas: 600000
         }
     }
 };
