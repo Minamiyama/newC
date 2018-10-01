@@ -49,4 +49,10 @@ contract TreePresell {
         require(msg.sender == owner);
         return address(this).balance;
     }
+
+    function viewData(uint treeType) public view returns (address[]) {
+        require(msg.sender == owner);
+        require(treeType >=0 && treeType < TREE_AMOUNT);
+        return treeOwners[treeType];
+    }
 }
