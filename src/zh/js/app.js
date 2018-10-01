@@ -4,27 +4,11 @@ App = {
     inited: false,
 
     init: function() {
-        // Load pets.
-        // $.getJSON('../pets.json', function(data) {
-        //     var petsRow = $('#petsRow');
-        //     var petTemplate = $('#petTemplate');
-
-        //     for (i = 0; i < data.length; i++) {
-        //         petTemplate.find('.panel-title').text(data[i].name);
-        //         petTemplate.find('img').attr('src', data[i].picture);
-        //         petTemplate.find('.pet-total').text(data[i].total);
-        //         petTemplate.find('.pet-stock').text(data[i].stock);
-        //         petTemplate.find('.pet-own').text(data[i].own);
-        //         petTemplate.find('.btn-adopt').attr('data-id', data[i].id);
-
-        //         petsRow.append(petTemplate.html());
-        //     }
-        // });
-        if (App.inited) {
-            return;
+        if (App.inited === true) {
+            return true;
         }
+        
         App.inited = true;
-
         return App.initWeb3();
     },
 
@@ -35,6 +19,7 @@ App = {
         } else {
             // If no injected web3 instance is detected, fall back to Ganache
             console.log("浏览器无钱包插件");
+            alert("未检测到钱包插件，请在支持DAPP的浏览器中打开")
             App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
         }
         web3 = new Web3(App.web3Provider);
@@ -51,6 +36,7 @@ App = {
             // Set the provider for our contract
             App.contracts.Adoption.setProvider(App.web3Provider);
 
+            App.watchEvents();
             // Use our contract to retrieve and mark the adopted pets
             return App.getSellInfo();
         });
@@ -58,20 +44,46 @@ App = {
         return App.bindEvents();
     },
 
-    bindEvents: function() {
-        $(document).on('click', '.btn-adopt', App.handleAdopt);
+    watchEvents: function() {
+        var presellInstance;
+
+        App.contracts.Adoption.deployed().then(function(instance) {
+            presellInstance = instance;
+
+            presellInstance.TreeBeBought(function(trees) {
+                console.log("收到购买通知");
+                App.getSellInfo();
+            });
+        })
     },
 
-    getSellInfo: function(adopters, account) {
+    bindEvents: function() {
+        // $(document).on('click', '.btn-adopt', App.handleAdopt);
+    },
+
+    getSellInfo: function() {
         var adoptionInstance;
 
         App.contracts.Adoption.deployed().then(function(instance) {
             adoptionInstance = instance;
 
             return adoptionInstance.getSellInfo.call();
-        }).then(function([trees, mine]) {
-            console.log(trees);
-            console.log(mine);
+        }).then(function(results) {
+            // console.log(results);
+            var trees = results[0];
+            var mine = results[1];
+            // console.log(trees);
+            // console.log(mine);
+
+            // for (let i = 0; i < trees.length; i++) {
+            //     const element = trees[i];
+            //     console.log("tree " + i + ": ", element.toString(10));
+            // }
+            
+            // for (let i = 0; i < mine.length; i++) {
+            //     const element = mine[i];
+            //     console.log("mine " + i + ": ", element.toString(10));
+            // }
 
             App.fillData(trees, mine);
             initTree();

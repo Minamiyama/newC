@@ -8,6 +8,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var cleanCSS = require('gulp-clean-css');
 var htmlmin = require('gulp-htmlmin');
 var rename = require('gulp-rename');
+var gutil = require('gulp-util');
 
 // 编译sass
 gulp.task('sass', function() {
@@ -29,6 +30,9 @@ gulp.task('sass', function() {
 gulp.task('minjs', function() {
     return gulp.src('src/**/*.js')
         .pipe(uglify())
+        .on('error', function (err) {
+            gutil.log(gutil.colors.red('[Error]'), err.toString());
+        })
         .pipe(gulp.dest('dist/'))
 })
 

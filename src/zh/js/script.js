@@ -66,13 +66,8 @@ function getTreeData(callback) {
         callback()
     }, 2000)
 }
-var currentTreeName = '';
-$("#js-tree li").click(function() {
-    var name = $(this).attr("name");
-    currentTreeName = name;
-    $("#js-tree-content .left img").attr("src", "img/big-" + name + ".jpg");
-    $(this).addClass("active").siblings("li").removeClass("active");
 
+function refreshSellBoard(name) {
     var treeObj = treeData[name]
     var descHtml = '';
     var sellOut = treeObj.total - treeObj.stock
@@ -89,10 +84,20 @@ $("#js-tree li").click(function() {
     $("#js-tree-status").text(descHtml)
     $("#js-tree-name").text(treeObj.name)
         // $(this).children(".desc").text(treeObj.stock + ' / ' + treeObj.total)
+}
+
+var currentTreeName = '';
+$("#js-tree li").click(function() {
+    var name = $(this).attr("name");
+    currentTreeName = name;
+    $("#js-tree-content .left img").attr("src", "img/big-" + name + ".jpg");
+    $(this).addClass("active").siblings("li").removeClass("active");
+
+    refreshSellBoard(name);
 })
 
 function initTree() {
-    App.init();
+    var inited = App.init();
 
     var list = $("#js-tree li");
     var name = "",
@@ -109,7 +114,12 @@ function initTree() {
         }
         $(list[i]).children(".desc").text(desc)
     }
-    $("#js-tree li").eq(0).click();
+    if (inited !== true) {
+        $("#js-tree li").eq(0).click();
+    }
+    else {
+        refreshSellBoard(currentTreeName);
+    }
 }
 
 getTreeData(function() {
